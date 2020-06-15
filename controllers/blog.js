@@ -1,11 +1,11 @@
-const Blog = require('../models/post')
+const Post = require('../models/post')
 const db = require('../db/connection')
 
 db.on('error', console.error.bind(console, 'MongoDB connection error:'))
 
 const getPosts = async (req, res) => {
   try {
-      const blog = await Blog.find()
+      const blog = await Post.find()
       res.json(blog)
   } catch (error) {
       res.status(500).json({ error: error.message })
@@ -15,7 +15,7 @@ const getPosts = async (req, res) => {
 const getPost = async (req, res) => {
   try {
       const { id } = req.params
-      const post = await Blog.findById(id)
+      const post = await Post.findById(id)
       if (post) {
           return res.json(post)
       }
@@ -27,7 +27,7 @@ const getPost = async (req, res) => {
 
 const createPost = async (req, res) => {
   try {
-      const post = await new Blog(req.body)
+      const post = await new Post(req.body)
       await post.save()
       res.status(201).json(post)
   } catch (error) {
@@ -38,7 +38,7 @@ const createPost = async (req, res) => {
 
 const updatePost = async (req, res) => {
   const { id } = req.params
-  await Blog.findByIdAndUpdate(id, req.body, { new: true }, (error, post) => {
+  await Post.findByIdAndUpdate(id, req.body, { new: true }, (error, post) => {
       if (error) {
           return res.status(500).json({ error: error.message })
       }
@@ -52,7 +52,7 @@ const updatePost = async (req, res) => {
 const deletePost = async (req, res) => {
   try {
       const { id } = req.params;
-      const deleted = await Product.findByIdAndDelete(id)
+      const deleted = await Post.findByIdAndDelete(id)
       if (deleted) {
           return res.status(200).send("Post deleted")
       }
