@@ -2,10 +2,10 @@
   "name": "blog-app-exercise",
   "version": "1.0.0",
   "description": "# Blog App",
-  "main": "server.js",
+  "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "start": "node server.js",
+    "start": "node server",
     "dev": "nodemon server.js"
   },
   "repository": {
