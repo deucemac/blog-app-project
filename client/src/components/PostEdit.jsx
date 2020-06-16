@@ -7,7 +7,7 @@ import { getPost, updatePost } from '../services/products'
 
 
 
-export default class PostEdit extends Component {
+class PostEdit extends Component {
   constructor(props) {
     super(props)
     state = {
@@ -26,6 +26,23 @@ export default class PostEdit extends Component {
     const post = await getPost(id)
     this.setState({ post })
   }
+
+  handleChange = (event) => {
+    const { name, value } = event.target
+    this.setState({
+        product: {
+            ...this.state.post,
+            [name]: value
+        }
+    })
+}
+
+handleSubmit = async (event) => {
+    event.preventDefault()
+    let { id } = this.props.match.params
+    const updated = await updatePost(id, this.state.post)
+    this.setState({ updated })
+}
   
   render() {
     const { post, updated } = this.state
@@ -38,7 +55,7 @@ export default class PostEdit extends Component {
       <Layout>
                 <div className="post-edit">
                     <div className="image-container">
-                        <img className="edit-product-image" src={post.imgURL} alt={post.name} />
+                        <img className="edit-post-image" src={post.imgURL} alt={post.name} />
                         <form onSubmit={this.handleSubmit}>
                             <input
                                 className="edit-input-image-link"
@@ -87,5 +104,5 @@ export default class PostEdit extends Component {
 }
 
 
-
+export default PostEdit
 
