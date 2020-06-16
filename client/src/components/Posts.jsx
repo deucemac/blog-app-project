@@ -2,12 +2,13 @@ import React, { Component } from 'react'
 import './Posts.css'
 import Post from './Post'
 import Search from './Search'
+import Layout from './shared/layout/Layout'
 
 //functions needs to match sort.js
-import { AZ, ZA, lowestFirst, highestFirst } from './Sort'
+import { alph, revAlph, lowPrice, highPrice} from './Sort'
 import { getPosts } from '../services/posts'
 
-export default class Posts extends Component {
+class Posts extends Component {
   constructor() {
     super()
     this.state = {
@@ -41,20 +42,20 @@ export default class Posts extends Component {
     switch (input) {
       case 'name-ascending':
         this.setState({
-          posts: AZ(posts)
+          posts: alph(posts)
         })
         break
       case 'name-descending':
         this.setState({
-          posts: ZA(posts)
+          posts: revAlph(posts)
         })
         break
       case 'price-ascending':
         this.setState({
-          posts:lowestFirst(posts)
+          posts: lowPrice(posts)
         })
         this.setState({
-          posts: highestFirst(posts)
+          posts: highPrice(posts)
         })
         break
       default:
@@ -62,12 +63,13 @@ export default class Posts extends Component {
     }
   }
 
-  handleSubmit = e => event.preventDefault()
+  handleSubmit = e => e.preventDefault()
+  // const { id } = prop
 
   render() {
     const posts = this.state.filteredPosts ? this.state.filteredPosts : this.state.posts
     const POSTS = posts.map((post, index) =>
-      <Post _id={index} name={post.name} imgURL={post.imgURL} description={post.description} user={post.user}/>
+      <Post _id={post._id} name={post.name} imgURL={post.imgURL} description={post.description} user={post.user}/>
     )
     return (
       <Layout>

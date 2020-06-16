@@ -1,8 +1,8 @@
 import React, { Component } from 'react'
-import './ProductEdit.css'
+import './PostEdit.css'
 import { Redirect } from 'react-router-dom'
-import Layout from './shared/Layout'
-import { getPost, updatePost } from '../services/products'
+import Layout from './shared/layout/Layout'
+import { getPost, updatePost } from '../services/posts'
 
 
 
@@ -10,7 +10,7 @@ import { getPost, updatePost } from '../services/products'
 class PostEdit extends Component {
   constructor(props) {
     super(props)
-    state = {
+    this.state = {
       post: {
         name: '',
         imageURL: '',
@@ -30,7 +30,7 @@ class PostEdit extends Component {
   handleChange = (event) => {
     const { name, value } = event.target
     this.setState({
-        product: {
+        post: {
             ...this.state.post,
             [name]: value
         }
@@ -48,7 +48,7 @@ handleSubmit = async (event) => {
     const { post, updated } = this.state
 
     if (updated) {
-      <Redirect to={`/posts/${this.props.match.params.id}`} />
+      return <Redirect to={`/posts/${this.props.match.params.id}`} />
     }
 
     return (
@@ -78,8 +78,8 @@ handleSubmit = async (event) => {
                             onChange={this.handleChange}
                         />
                         <input
-                            className="input-price"
-                            placeholder='Price'
+                            className="input-user"
+                            placeholder='User'
                             value={post.user}
                             name='user'
                             required

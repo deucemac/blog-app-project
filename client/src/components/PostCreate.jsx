@@ -1,8 +1,8 @@
 import React, { Component } from 'react'
-import './ProductCreate.css'
-import Layout from './shared/Layout'
+import './PostCreate.css'
+import Layout from './shared/layout/Layout'
 import { Redirect } from 'react-router-dom'
-import { createPost } from '../services/products'
+import { createPost } from '../services/posts'
 
 
 
@@ -38,7 +38,7 @@ class PostCreate extends Component {
     const { post, created } = this.state
 
     if (created) {
-      <Redirect to='/posts' />
+      return <Redirect to={'/posts'} />
     }
 
     return (
@@ -52,7 +52,7 @@ class PostCreate extends Component {
                         required
                         autoFocus
                         onChange={this.handleChange}
-                    />
+                    /><br></br>
                     <input
                         className="input-img"
                         placeholder='image link'
@@ -60,7 +60,7 @@ class PostCreate extends Component {
                         name='imageURL'
                         required
                         onChange={this.handleChange}
-                    />
+                    /><br></br>
                     <textarea
                         className="textarea-description"
                         rows={10}
@@ -69,7 +69,7 @@ class PostCreate extends Component {
                         name='description'
                         required
                         onChange={this.handleChange}
-                    />
+                    /><br></br>
                     <input
                         className="input-user"
                         placeholder='user name'
@@ -77,7 +77,7 @@ class PostCreate extends Component {
                         name='user'
                         required
                         onChange={this.handleChange}
-                    />
+                    /><br></br>
                     <button type='submit' className="submit-button">Submit</button>
                 </form>
             </Layout>

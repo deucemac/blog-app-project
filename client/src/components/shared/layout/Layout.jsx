@@ -1,7 +1,7 @@
 import React from 'react'
 import './Layout.css'
 import Nav from '../header/Nav'
-import Footer from './Footer'
+import Footer from '../footer/Footer'
 
 const Layout = (props) => (
   <div className='layout'>
