@@ -83,7 +83,7 @@ class Posts extends Component {
             <option value="price-descending">&nbsp; Price, high to low &nbsp;</option>
           </select>
         </form>
-        <div>
+        <div className="posts">
           {POSTS}
         </div>
         

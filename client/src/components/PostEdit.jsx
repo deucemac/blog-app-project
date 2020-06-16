@@ -2,7 +2,9 @@ import React, { Component } from 'react'
 import './PostEdit.css'
 import { Redirect } from 'react-router-dom'
 import Layout from './shared/layout/Layout'
+
 import { getPost, updatePost } from '../services/posts'
+
 
 
 
