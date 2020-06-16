@@ -10,7 +10,7 @@ class PostCreate extends Component {
   state = {
     post: {
       name: '',
-      imageURL: '',
+      imgURL: '',
       description: '',
       user: ''
     }, 
@@ -30,6 +30,7 @@ class PostCreate extends Component {
   handleSubmit = async event => {
     event.preventDefault()
     const created = await createPost(this.state.post)
+    console.log(created)
     this.setState({ created })
   }
 
@@ -57,7 +58,7 @@ class PostCreate extends Component {
                         className="input-img"
                         placeholder='image link'
                         value={post.imgURL}
-                        name='imageURL'
+                        name='imgURL'
                         required
                         onChange={this.handleChange}
                     /><br></br>
