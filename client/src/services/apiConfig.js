@@ -3,8 +3,8 @@ import axios from 'axios';
 let apiUrl;
 
 const apiUrls = {
-    production: 'http://blog-full-stack-gmcdow.herokuapp.com/posts',
-    development: 'http://localhost:3000/api'
+    production: 'http://blog-full-stack-gmcdow.herokuapp.com',
+    development: 'http://localhost:3000'
 }
 
 if (window.location.hostname === 'localhost') {

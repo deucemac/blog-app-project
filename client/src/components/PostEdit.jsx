@@ -1,16 +1,18 @@
 import React, { Component } from 'react'
-import './ProductEdit.css'
+import './PostEdit.css'
 import { Redirect } from 'react-router-dom'
 import Layout from './shared/layout/Layout'
-import { getPost, updatePost } from '../services/products'
+
+import { getPost, updatePost } from '../services/posts'
 
 
 
 
-export default class PostEdit extends Component {
+
+class PostEdit extends Component {
   constructor(props) {
     super(props)
-    state = {
+    this.state = {
       post: {
         name: '',
         imageURL: '',
@@ -26,19 +28,36 @@ export default class PostEdit extends Component {
     const post = await getPost(id)
     this.setState({ post })
   }
+
+  handleChange = (event) => {
+    const { name, value } = event.target
+    this.setState({
+        post: {
+            ...this.state.post,
+            [name]: value
+        }
+    })
+}
+
+handleSubmit = async (event) => {
+    event.preventDefault()
+    let { id } = this.props.match.params
+    const updated = await updatePost(id, this.state.post)
+    this.setState({ updated })
+}
   
   render() {
     const { post, updated } = this.state
 
     if (updated) {
-      <Redirect to={`/posts/${this.props.match.params.id}`} />
+      return <Redirect to={`/posts/${this.props.match.params.id}`} />
     }
 
     return (
       <Layout>
                 <div className="post-edit">
                     <div className="image-container">
-                        <img className="edit-product-image" src={post.imgURL} alt={post.name} />
+                        <img className="edit-post-image" src={post.imgURL} alt={post.name} />
                         <form onSubmit={this.handleSubmit}>
                             <input
                                 className="edit-input-image-link"
@@ -61,8 +80,8 @@ export default class PostEdit extends Component {
                             onChange={this.handleChange}
                         />
                         <input
-                            className="input-price"
-                            placeholder='Price'
+                            className="input-user"
+                            placeholder='User'
                             value={post.user}
                             name='user'
                             required
@@ -87,5 +106,5 @@ export default class PostEdit extends Component {
 }
 
 
-
+export default PostEdit
 
