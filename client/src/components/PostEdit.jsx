@@ -1,7 +1,7 @@
 import React, { Component } from 'react'
 import './ProductEdit.css'
 import { Redirect } from 'react-router-dom'
-import Layout from './shared/Layout'
+import Layout from './shared/layout/Layout'
 import { getPost, updatePost } from '../services/products'
 
 
