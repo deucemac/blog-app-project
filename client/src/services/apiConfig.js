@@ -3,7 +3,7 @@ import axios from 'axios';
 let apiUrl;
 
 const apiUrls = {
-    production: '',
+    production: 'http://blog-full-stack-gmcdow.herokuapp.com/posts',
     development: 'http://localhost:3000/api'
 }
 
